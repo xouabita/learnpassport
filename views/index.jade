@@ -7,7 +7,13 @@ block content
         a#menu-toggle.btn.btn-default(href='#')
           i.fa.fa-bars
         .col-md-12
-          h1 Say something meaningful here.
+          if (!user)
+            a(href="/login") Login
+            br
+            a(href="/register") Register
+          if (user)
+            p You are currently logged in as #{user.username}
+            a(href="logout")
           p.lead Say something worthwhile here.
           a(href="/") Go home
           br
