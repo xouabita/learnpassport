@@ -1,5 +1,6 @@
 // dependencies
-var path             = require('path')
+var config           = require('./oauth.js')
+  , path             = require('path')
   , express          = require('express')
   , http             = require('http')
   , mongoose         = require('mongoose')
@@ -36,8 +37,20 @@ app.configure('production', function(){
 // Passport config
 var Account = require('./models/account');
 passport.use(new LocalStrategy(Account.authenticate()));
+
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
+
+passport.use(new FacebookStrategy({
+  clientID: config.facebook.clientID,
+  clientSecret: config.facebook.clientSecret,
+  callbackURL: config.facebook.callbackURL
+},
+function(accessToken, refreshToken, profile, done) {
+  process.nextTick(function() {
+    return done(null, profile);
+  });
+}));
 
 // mongoose
 mongoose.connect('mongodb://localhost/passport_local_mongoose');
