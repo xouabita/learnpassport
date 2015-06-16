@@ -1,10 +1,11 @@
 // dependencies
-var path          = require('path')
-  , express       = require('express')
-  , http          = require('http')
-  , mongoose      = require('mongoose')
-  , passport      = require('passport')
-  , LocalStrategy = require('passport-local').Strategy;
+var path             = require('path')
+  , express          = require('express')
+  , http             = require('http')
+  , mongoose         = require('mongoose')
+  , passport         = require('passport')
+  , LocalStrategy    = require('passport-local').Strategy
+  , FacebookStrategy = require('passport-facebook').Strategy;
 
 // global config
 var app = express();
