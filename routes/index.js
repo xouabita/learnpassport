@@ -27,7 +27,11 @@ module.exports = function (app) {
     res.render('login', { user : req.user });
   });
 
-  app.post('/logout', function(req, res) {
+  app.post('/login', passport.authenticate('local'), function(req, res) {
+    res.redirect('/');
+  });
+
+  app.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');
   });
