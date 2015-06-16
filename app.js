@@ -11,7 +11,7 @@ var app = express();
 app.set('port', process.env.PORT || 1337);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
-app.set('view options'. {layout: false});
+app.set('view options', {layout: false});
 app.use(express.favicon());
 app.use(express.logger());
 app.use(express.bodyParser());
@@ -36,7 +36,7 @@ app.configure('production', function(){
 var Account = require('./models/account');
 passport.use(new LocalStrategy(Account.authenticate()));
 passport.serializeUser(Account.serializeUser());
-passport.deserializeUser(Account.deserializeUSer());
+passport.deserializeUser(Account.deserializeUser());
 
 // mongoose
 mongoose.connect('mongodb://localhost/passport_local_mongoose');

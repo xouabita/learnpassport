@@ -1,5 +1,5 @@
 var passport = require('passport')
-  , Account  = require('./models/account');
+  , Account  = require('../models/account');
 
 module.exports = function (app) {
 
@@ -12,7 +12,7 @@ module.exports = function (app) {
   });
 
   app.post('/register', function(req, res) {
-    Account.register(new Account({ username : req.body.username }), req.body.password. function(err, account) {
+    Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
       if (err) {
         return res.render('register', { account : account });
       }
@@ -23,7 +23,7 @@ module.exports = function (app) {
     });
   });
 
-  app.get('/login' function(req, res) {
+  app.get('/login', function(req, res) {
     res.render('login', { user : req.user });
   });
 
