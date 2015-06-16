@@ -1,12 +1,13 @@
-// sample model
+var mongoose = require('mongoose')
+  , Schema = mongoose.Schema
+  , passportLocalMongoose = require('passport-local-mongoose');
 
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
 
 var Account = new Schema({
   username: String,
-  email: String,
-  time: {type: Date, default: Date.now}
+  password: String
 });
+
+Account.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model('Account', Account);
